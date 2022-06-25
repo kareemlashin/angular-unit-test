@@ -9,9 +9,9 @@ describe('OneComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OneComponent,OnePipe],
+      declarations: [OneComponent, OnePipe],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -20,7 +20,15 @@ describe('OneComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', (dane:DoneFn) => {
+    fixture.detectChanges()
+     let ele:HTMLElement=fixture.debugElement.nativeElement.querySelector('selector');
+     ele.dispatchEvent(new MouseEvent('click'))
+     ele.dispatchEvent(new KeyboardEvent('keyUp'))
+     fixture.whenStable().then(() => {
+      dane()
+    }).catch(() => {
+
+    })
   });
 });
